@@ -1,0 +1,105 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title"><b>Blogs</b></h4>
+                    </div>
+                        <table>
+                            <tr>
+                                <td>&nbsp; &nbsp;<span class="pe-stack pe-lg">
+                                    <i class="pe-7s-note2" style="font-size: 50px;"></i>
+                                  </span></td>
+                                <td> <h1>&nbsp; {{blogCount}}</h1></td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title"><b>Users</b></h4>
+                    </div>
+                        <table>
+                            <tr>
+                                <td>&nbsp; <span class="pe-stack pe-lg">
+                                    <i class="pe-7s-user" style="font-size: 50px;"></i>
+                                  </span></td>
+                                <td> <h1>&nbsp; {{userCount}}</h1></td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title"><b>Reviewers</b></h4>
+                    </div>
+                        <table>
+                            <tr>
+                                <td>&nbsp; &nbsp; <span class="pe-stack pe-lg">
+                                    <i class="pe-7s-users" style="font-size: 50px;"></i>
+                                  </span></td>
+                                <td> <h1>&nbsp; {{reviewerCount}}</h1></td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title"><b>Assigns</b></h4>
+                    </div>
+                        <table>
+                            <tr>
+                                <td>&nbsp; <span class="pe-stack pe-lg">
+                                    <i class="pe-7s-portfolio" style="font-size: 50px;"></i>
+                                  </span></td>
+                                <td> <h1>&nbsp; {{assignCount}}</h1></td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title"> <b>Blogs Statistics</b> </h4>
+                    </div>
+                    <div class="content">
+                        <canvas baseChart
+                        [data]="pieChartData"
+                        [chartType]="pieChartType"
+                        [colors]="pieChartColors"
+                        [labels]="pieChartLabels"
+                        ></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title"> <b>User Statistics</b> </h4>
+                    </div>
+                    <div class="content">
+                        <canvas baseChart
+                        [data]="pieChartData1"
+                        [chartType]="pieChartType1"
+                        [colors]="pieChartColors1"
+                        [labels]="pieChartLabels1"
+                        ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

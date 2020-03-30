@@ -1,0 +1,25 @@
+<div class="login-form">
+    <form #f="ngForm" method="POST" (submit)="userLogin()">
+		<div class="avatar">
+			<img src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_avatar_child_kid-512.png" alt="Avatar">
+		</div>
+        <h2 class="text-center">Member Login</h2>   
+        <div class="form-group">
+        	<input type="text"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" name="email" placeholder="Email" required [(ngModel)]="userEmail" #email="ngModel">
+            <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                <div *ngIf="email.errors.pattern">Enter valid email</div>
+                <div *ngIf="email.errors.required">Email is required</div>
+            </div>
+        </div>
+		<div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required [(ngModel)]="userPassword" #password="ngModel">
+            <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+                <div *ngIf="password.errors.required">Passoword is required</div>
+            </div>
+        </div>        
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="!f.valid">Sign in</button>
+        </div>
+    </form>
+    <p class="text-center small">Don't have an account? <a [routerLink]="['/register']" style="color:black;">Sign up</a></p>
+</div>

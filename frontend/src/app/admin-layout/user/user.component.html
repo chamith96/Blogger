@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Users Details</h4>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                          <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>Full Name</td>
+                                        <td>blogs</td>
+                                        <td>Send Mail</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let users of user |  paginate: { itemsPerPage: 10, currentPage: p} ">
+                                        <td>{{users.username}}</td>
+                                        <td>{{users.name}}</td>
+                                        <td><button class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal" value="{{users.uid}}" (click)="selectIdHandler($event)">Blogs</button>
+                                            <!-- Modal -->
+                                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Blogs</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <ul  class="list-group">
+                                                    <li *ngFor="let userBlogs of userBlog" class="list-group-item">
+                                                        <a routerLink="/blog/{{userBlogs.bid}}" target="_blank">{{userBlogs.title}}</a>
+                                                    </li>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>     
+                                  </td>
+                                        <td><a routerLink="/admin/users/emails/{{users.uid}}" class="btn btn-primary"><i class="pe-7s-mail"></i>mail</a></td>
+                                    </tr>
+                                </tbody>
+                          </table>
+                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

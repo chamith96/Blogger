@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Assign Details</h4>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                          <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <td>Blog</td>
+                                        <td>User</td>
+                                        <td>Reviewer</td>
+                                        <td>CreatedAt</td>
+                                        <td>Assign Status</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let assigns of assign | paginate: { itemsPerPage: 10, currentPage: p}">  
+                                        <td>{{assigns.title}}</td>
+                                        <td>{{assigns.username}}</td>
+                                        <td>{{assigns.reviewerName}}</td>
+                                        <td>{{assigns.created_at}}</td>
+                                        <td>
+                                            <ng-container *ngIf="assigns.status==0; else elseTemplate">
+                                                <p class="text-danger">User not read message yet</p>
+                                            </ng-container>
+                                            <ng-template #elseTemplate>
+                                                <p class="text-primary">User read message</p>
+                                            </ng-template>
+                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                          </table>
+                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
