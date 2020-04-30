@@ -47,7 +47,7 @@
     "chartist": "0.11.0",
     "core-js": "2.6.9",
     "googleapis": "33.0.0",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "ng2-charts": "^2.3.0",
     "ngx-pagination": "^5.0.0",
     "ngx-quill": "^8.0.0",
