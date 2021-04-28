@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name="blog")
+@Table(name = "blog")
 
 public class Blog {
 
@@ -21,7 +21,7 @@ public class Blog {
     private String title;
 
     @NotNull
-    @Type(type="text")
+    @Type(type = "text")
     private String content;
 
     @ManyToOne

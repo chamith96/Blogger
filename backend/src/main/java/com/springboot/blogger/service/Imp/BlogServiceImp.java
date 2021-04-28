@@ -60,9 +60,9 @@ public class BlogServiceImp implements BlogService {
     }
 
     @Override
-    public void delete(int bid)  {
+    public void delete(int bid) {
         Blog blog = findOne(bid).get();
-        File file = new File(path+blog.getImageLocation());
+        File file = new File(path + blog.getImageLocation());
         file.delete();
         blogRepository.deleteById(bid);
     }
@@ -78,17 +78,17 @@ public class BlogServiceImp implements BlogService {
     }
 
     @Override
-    public void assignReviewers(int reviewerId,int blogId) {
+    public void assignReviewers(int reviewerId, int blogId) {
         blogRepository.assignReviewer(reviewerId, blogId);
     }
 
     @Override
     public List<SearchDto> findBlogsByTitle(String title) {
-       return blogRepository.searchBlog(title);
+        return blogRepository.searchBlog(title);
     }
 
     @Override
-    public void getNotification(int reviewerId,int blogId) {
+    public void getNotification(int reviewerId, int blogId) {
         blogRepository.getNotification(reviewerId, blogId);
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="reviewer")
+@Table(name = "reviewer")
 public class Reviewer {
 
     @Id

@@ -2,41 +2,45 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                    <h4 class="title" style="font-size: 30px;"><b>Blogs</b></h4>
-                    <div class="table-full-width">
-                        <table class="table">
-                            <tbody>
-                                <tr *ngFor="let blogs of blog | paginate: { itemsPerPage: 5, currentPage: p }">
-                                    <td><a style="color: black; font-size: 18px;" routerLink="/blog/{{blogs.bid}}">{{blogs.title}}</a></td>
-                                    <td class="td-actions text-right">
-                                        <a routerLink="/blog/edit/{{blogs.bid}}" rel="tooltip" title="Edit Blog" class="btn btn-info btn-simple btn-xs">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="" data-toggle="modal" data-target="#myModal" class="text-danger" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                <h4 class="title" style="font-size: 30px;"><b>Blogs</b></h4>
+                <div class="table-full-width">
+                    <table class="table">
+                        <tbody>
+                        <tr *ngFor="let blogs of blog | paginate: { itemsPerPage: 5, currentPage: p }">
+                            <td><a style="color: black; font-size: 18px;" routerLink="/blog/{{blogs.bid}}">{{blogs.title}}</a>
+                            </td>
+                            <td class="td-actions text-right">
+                                <a routerLink="/blog/edit/{{blogs.bid}}" rel="tooltip" title="Edit Blog"
+                                   class="btn btn-info btn-simple btn-xs">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="" data-toggle="modal" data-target="#myModal" class="text-danger" rel="tooltip"
+                                   title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
-            
+
             <div class="col-md-4">
                 <div class="card card-user">
                     <div class="image">
                         <img src="https://api.androidhive.info/images/nav-menu-header-bg.jpg" alt="..."/>
                     </div>
-                    
+
                     <div class="content" *ngIf="user">
                         <div class="author">
-                                <img class="avatar border-gray" src="assets/img/face-0.jpg" alt="..."/>
+                            <img class="avatar border-gray" src="assets/img/face-0.jpg" alt="..."/>
 
-                                <h4 class="title">{{user.name}}<br />
-                                    <small>{{user.username}}</small>
-                                </h4>
-                        </div><br>
+                            <h4 class="title">{{user.name}}<br/>
+                                <small>{{user.username}}</small>
+                            </h4>
+                        </div>
+                        <br>
                         <ng-container *ngIf="user.description; else elseTemplate">
                             <p class="description text-center">{{user.description}}</p>
                         </ng-container>
@@ -44,52 +48,59 @@
                             <p class="description text-center">Please add description about you....</p>
                         </ng-template>
                         <div class="text-center">
-                            <a href="" class="link" data-toggle="modal" data-target="#modalLoginForm">Add description</a>
+                            <a href="" class="link" data-toggle="modal" data-target="#modalLoginForm">Add
+                                description</a>
 
-                              <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                    <div class="modal-header text-center">
-                                        <h4 class="modal-title w-100 font-weight-bold">Add description</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body mx-3">
-                                        <form #f="ngForm" method="POST" (submit)="updateDescription()">
-                                            <div class="form-group">
-                                                <input type="text" required="required" class="form-control" name="description" placeholder="Description" [(ngModel)]="userDescription" #name="ngModel">
-                                            </div>       
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-info pull-right" [disabled]="!f.valid">Update</button>
+                                        <div class="modal-header text-center">
+                                            <h4 class="modal-title w-100 font-weight-bold">Add description</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
-                                        <div class="clearfix"></div>
-                                    </form>
+                                        <div class="modal-body mx-3">
+                                            <form #f="ngForm" method="POST" (submit)="updateDescription()">
+                                                <div class="form-group">
+                                                    <input type="text" required="required" class="form-control"
+                                                           name="description" placeholder="Description"
+                                                           [(ngModel)]="userDescription" #name="ngModel">
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-info pull-right"
+                                                            [disabled]="!f.valid">Update
+                                                    </button>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                          </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Delete Warning !!</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p>Sure to delete ?</p>
-        </div>
-        <div class="modal-footer">
-                  <form  method="POST" (submit)="deleteBlog()">
-                    <input type="submit" class="btn btn-danger" value="Delete" data-toggle="modal" data-target="#myModal">
-                  </form>
-        </div>
-</div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Warning !!</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Sure to delete ?</p>
+                </div>
+                <div class="modal-footer">
+                    <form method="POST" (submit)="deleteBlog()">
+                        <input type="submit" class="btn btn-danger" value="Delete" data-toggle="modal"
+                               data-target="#myModal">
+                    </form>
+                </div>
+            </div>

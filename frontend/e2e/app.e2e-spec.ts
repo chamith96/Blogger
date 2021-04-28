@@ -1,14 +1,14 @@
-import { LbdFreeAngularcliPage } from './app.po';
+import {LbdFreeAngularcliPage} from './app.po';
 
-describe('lbd-free-angularcli App', function() {
-  let page: LbdFreeAngularcliPage;
+describe('lbd-free-angularcli App', function () {
+    let page: LbdFreeAngularcliPage;
 
-  beforeEach(() => {
-    page = new LbdFreeAngularcliPage();
-  });
+    beforeEach(() => {
+        page = new LbdFreeAngularcliPage();
+    });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
+    it('should display message saying app works', () => {
+        page.navigateTo();
+        expect(page.getParagraphText()).toEqual('app works!');
+    });
 });

@@ -44,7 +44,7 @@ public class UserServiceImp implements UserDetailsService, UserService {
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-        if(user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
@@ -53,7 +53,7 @@ public class UserServiceImp implements UserDetailsService, UserService {
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         user.getRole().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getName()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
         });
         return authorities;
     }
@@ -62,13 +62,13 @@ public class UserServiceImp implements UserDetailsService, UserService {
     public void save(User user) {
 
         User userError = findOne(user.getUsername());
-        if(userError!=null) throw new ApiRequestException("user already exist");
+        if (userError != null) throw new ApiRequestException("user already exist");
 
-        if((user.getName()==null && user.getUsername()==null) || user.getName()==null || user.getUsername()==null) {
+        if ((user.getName() == null && user.getUsername() == null) || user.getName() == null || user.getUsername() == null) {
             throw new ApiRequestException("username or name cannot empty");
         } else {
-            if(Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,8}$", user.getPassword())) {
-                if(Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$", user.getUsername())) {
+            if (Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,8}$", user.getPassword())) {
+                if (Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$", user.getUsername())) {
                     user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
                     Role roles = roleRepository.findRoleByName(user.getUserRole());
                     user.setRole(new HashSet<>(Collections.singleton(roles)));

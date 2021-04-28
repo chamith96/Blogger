@@ -1,15 +1,16 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 
 @Component({
-  selector: 'app-user-layout',
-  templateUrl: './user-layout.component.html',
-  styleUrls: ['./user-layout.component.css']
+    selector: 'app-user-layout',
+    templateUrl: './user-layout.component.html',
+    styleUrls: ['./user-layout.component.css']
 })
 export class UserLayoutComponent implements OnInit {
-  constructor() {}
+    constructor() {
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-  }
- 
+    }
+
 }

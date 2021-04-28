@@ -7,138 +7,177 @@
                         <h4 class="title">Reviewer Details</h4>
                     </div>
                     <div class="content">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#secondExampleModal">Create Reviewer</button>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="secondExampleModal" tabindex="-1" role="dialog" aria-labelledby="secondExampleModalLebel"
-                                        aria-hidden="true" data-backdrop="false">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <h5 class="modal-title" id="secondExampleModalLebel">Add Reviewer</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                              </button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#secondExampleModal">Create
+                            Reviewer
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="secondExampleModal" tabindex="-1" role="dialog"
+                             aria-labelledby="secondExampleModalLebel"
+                             aria-hidden="true" data-backdrop="false">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="secondExampleModalLebel">Add Reviewer</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form #f="ngForm" method="POST" (ngSubmit)="addReviewer()">
+                                            <div class="form-group">
+                                                <input type="text" required="required" class="form-control" name="name"
+                                                       placeholder="Full Name" [(ngModel)]="userName" #name="ngModel">
+                                                <div class="alert alert-danger" *ngIf="name.touched && !name.valid">
+                                                    <div *ngIf="name.errors.required">Full Name is required</div>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                              <form #f="ngForm" method="POST" (ngSubmit)="addReviewer()">
-                                                <div class="form-group">
-                                                    <input type="text" required="required" class="form-control" name="name" placeholder="Full Name" [(ngModel)]="userName" #name="ngModel">
-                                                    <div class="alert alert-danger" *ngIf="name.touched && !name.valid">
-                                                        <div *ngIf="name.errors.required">Full Name is required</div>
+                                            <div class="form-group">
+                                                <input type="text" required="required" class="form-control"
+                                                       name="position" placeholder="Position" [(ngModel)]="userPosition"
+                                                       #position="ngModel">
+                                                <div class="alert alert-danger"
+                                                     *ngIf="position.touched && !position.valid">
+                                                    <div *ngIf="position.errors.required">Position is required</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" required="required" class="form-control"
+                                                       name="oraganiztion" placeholder="Oraganiztion"
+                                                       [(ngModel)]="userOraganiztion" #oraganiztion="ngModel">
+                                                <div class="alert alert-danger"
+                                                     *ngIf="oraganiztion.touched && !oraganiztion.valid">
+                                                    <div *ngIf="oraganiztion.errors.required">Oraganiztion is required
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <input type="text" required="required" class="form-control" name="position" placeholder="Position" [(ngModel)]="userPosition" #position="ngModel">
-                                                    <div class="alert alert-danger" *ngIf="position.touched && !position.valid">
-                                                        <div *ngIf="position.errors.required">Position is required</div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" required="required" class="form-control" name="oraganiztion" placeholder="Oraganiztion" [(ngModel)]="userOraganiztion" #oraganiztion="ngModel">
-                                                    <div class="alert alert-danger" *ngIf="oraganiztion.touched && !oraganiztion.valid">
-                                                        <div *ngIf="oraganiztion.errors.required">Oraganiztion is required</div>
-                                                    </div>
-                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-info pull-right">create</button>
                                             </div>
                                             <div class="clearfix"></div>
                                         </form>
-                                            </div>
-     
-                                          </div>
-                                        </div>
-                                      </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="content table-responsive table-full-width">
-                          <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td>Oraganization</td>
-                                        <td>Position</td>
-                                        <td>Edit</td>
-                                        <td>Delete</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let reviewers of reviewer | paginate: { itemsPerPage: 10, currentPage: p}">
-                                      
-                                        <td>{{reviewers.name}}</td>
-                                        <td>{{reviewers.organization}}</td>
-                                        <td>{{reviewers.position}}</td>
-                                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal" value="{{reviewers.rid}}" (click)="selectIdHandler($event)"> <i class="pe-7s-edit"></i> edit</button>
-                                                  <!-- Modal -->
-                                                  <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                      aria-hidden="true" data-backdrop="false">
-                                                      <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                          <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Edit reviewer</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                              <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                          </div>
-                                                          <div class="modal-body">
-                                                            <form #f="ngForm" method="POST" (ngSubmit)="editReviewer()">
-                                                                <div class="form-group">
-                                                                    <input type="text" required="required" class="form-control" name="name" placeholder="Full Name" [(ngModel)]="editName" #name="ngModel">
-                                                                    <div class="alert alert-danger" *ngIf="name.touched && !name.valid">
-                                                                        <div *ngIf="name.errors.required">Full Name is required</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input type="text" required="required" class="form-control" name="position" placeholder="Position" [(ngModel)]="editPosition" #position="ngModel">
-                                                                    <div class="alert alert-danger" *ngIf="position.touched && !position.valid">
-                                                                        <div *ngIf="position.errors.required">Position is required</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input type="text" required="required" class="form-control" name="oraganiztion" placeholder="Oraganiztion" [(ngModel)]="editOraganiztion" #oraganiztion="ngModel">
-                                                                    <div class="alert alert-danger" *ngIf="oraganiztion.touched && !oraganiztion.valid">
-                                                                        <div *ngIf="oraganiztion.errors.required">Oraganiztion is required</div>
-                                                                    </div>
-                                                                </div>
-                                                          <div class="form-group">
-                                                              <button type="submit" class="btn btn-info pull-right">update</button>
-                                                          </div>
-                                                          <div class="clearfix"></div>
-                                                      </form>
-                                                          </div>
-                   
-                                                        </div>
-                                                      </div>
-                                                    </div>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Oraganization</td>
+                                <td>Position</td>
+                                <td>Edit</td>
+                                <td>Delete</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let reviewers of reviewer | paginate: { itemsPerPage: 10, currentPage: p}">
 
-                                        </td>
-
-                                        <td><button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                                          <i class="pe-7s-trash"></i>delete
-                                        </button>
-                                                  <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-                                                <div class="modal-dialog" role="document">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h5 class="modal-title" id="exampleModalLabel">Delete Warning!!</h5>
-                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <td>{{reviewers.name}}</td>
+                                <td>{{reviewers.organization}}</td>
+                                <td>{{reviewers.position}}</td>
+                                <td>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal"
+                                            value="{{reviewers.rid}}" (click)="selectIdHandler($event)"><i
+                                            class="pe-7s-edit"></i> edit
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel"
+                                         aria-hidden="true" data-backdrop="false">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit reviewer</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
-                                                      </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                      Are you sure?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                      <a type="button" class="btn btn-danger" (click)="deleteReviewer(reviewers.rid)">Delete</a>
-                                                    </div>
-                                                  </div>
+                                                    </button>
                                                 </div>
-                                              </div>     
-                                        </td>
-                                    </tr>
-                                </tbody>
-                          </table>
-                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                                <div class="modal-body">
+                                                    <form #f="ngForm" method="POST" (ngSubmit)="editReviewer()">
+                                                        <div class="form-group">
+                                                            <input type="text" required="required" class="form-control"
+                                                                   name="name" placeholder="Full Name"
+                                                                   [(ngModel)]="editName" #name="ngModel">
+                                                            <div class="alert alert-danger"
+                                                                 *ngIf="name.touched && !name.valid">
+                                                                <div *ngIf="name.errors.required">Full Name is
+                                                                    required
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" required="required" class="form-control"
+                                                                   name="position" placeholder="Position"
+                                                                   [(ngModel)]="editPosition" #position="ngModel">
+                                                            <div class="alert alert-danger"
+                                                                 *ngIf="position.touched && !position.valid">
+                                                                <div *ngIf="position.errors.required">Position is
+                                                                    required
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" required="required" class="form-control"
+                                                                   name="oraganiztion" placeholder="Oraganiztion"
+                                                                   [(ngModel)]="editOraganiztion"
+                                                                   #oraganiztion="ngModel">
+                                                            <div class="alert alert-danger"
+                                                                 *ngIf="oraganiztion.touched && !oraganiztion.valid">
+                                                                <div *ngIf="oraganiztion.errors.required">Oraganiztion
+                                                                    is required
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-info pull-right">
+                                                                update
+                                                            </button>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                        <i class="pe-7s-trash"></i>delete
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Warning!!</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a type="button" class="btn btn-danger"
+                                                       (click)="deleteReviewer(reviewers.rid)">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
                     </div>
                 </div>
             </div>

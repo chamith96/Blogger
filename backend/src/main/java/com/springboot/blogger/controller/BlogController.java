@@ -1,4 +1,5 @@
 package com.springboot.blogger.controller;
+
 import com.springboot.blogger.dto.AssignDto;
 import com.springboot.blogger.dto.MessageDto;
 import com.springboot.blogger.dto.NotificationDto;
@@ -55,7 +56,7 @@ public class BlogController {
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    @RequestMapping(method = RequestMethod.DELETE, value= "/blog/{bid}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/blog/{bid}")
     public MessageDto deleteBlog(@PathVariable int bid) {
         blogService.delete(bid);
         return new MessageDto("blog has been deleted");
@@ -64,8 +65,8 @@ public class BlogController {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping(method = RequestMethod.PUT, value = "/blog/{bid}")
     public void editBlog(@RequestBody Blog blog, @PathVariable int bid) {
-        Blog bl =  blogService.findOne(bid).get();
-        if(bl != null) {
+        Blog bl = blogService.findOne(bid).get();
+        if (bl != null) {
             bl.setTitle(blog.getTitle());
             bl.setContent(blog.getContent());
             blogService.save(bl);
@@ -78,10 +79,10 @@ public class BlogController {
         Reviewer reviewer = reviewerService.findById(reviewerId).get();
         Blog blog = blogService.findOne(blogId).get();
 
-        if(reviewer!=null && blog!=null) {
-            blogService.assignReviewers(reviewer.getRid(),blog.getId());
+        if (reviewer != null && blog != null) {
+            blogService.assignReviewers(reviewer.getRid(), blog.getId());
             return new MessageDto("reviewer is assigned");
-        }  else
+        } else
             throw new ApiRequestException("cannot find a reviewer or blog");
     }
 
@@ -98,8 +99,8 @@ public class BlogController {
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    @RequestMapping(value = "/blog/upload/{blogId}",method = RequestMethod.PUT)
-    public ResponseEntity uploadToLocalFileSystem(@RequestParam("file") MultipartFile file,@PathVariable int blogId) {
+    @RequestMapping(value = "/blog/upload/{blogId}", method = RequestMethod.PUT)
+    public ResponseEntity uploadToLocalFileSystem(@RequestParam("file") MultipartFile file, @PathVariable int blogId) {
         Date date = new Date();
         String file_name = file.getOriginalFilename();
         String dateString = String.valueOf(date.getTime());
@@ -111,15 +112,15 @@ public class BlogController {
         Path path = Paths.get(fileBasePath + fileName);
         try {
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-            Blog bl =  blogService.findOne(blogId).get();
-            if(bl != null) {
+            Blog bl = blogService.findOne(blogId).get();
+            if (bl != null) {
                 bl.setImageLocation(fileName);
                 blogService.save(bl);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return ResponseEntity.ok(new MessageDto(finalFile+" is uploaded"));
+        return ResponseEntity.ok(new MessageDto(finalFile + " is uploaded"));
     }
 
     @RequestMapping("/blog/all/search/{title}")
@@ -139,10 +140,10 @@ public class BlogController {
         Blog blog = blogService.findOne(blogId).get();
         Reviewer reviewer = reviewerService.findById(reviewerId).get();
 
-        if(blog!=null && reviewer!=null) {
-            blogService.getNotification(reviewer.getRid(),blog.getId());
+        if (blog != null && reviewer != null) {
+            blogService.getNotification(reviewer.getRid(), blog.getId());
             return new MessageDto("status is updated");
-        }  else
+        } else
             throw new ApiRequestException("cannot find a reviewer or blog");
     }
 

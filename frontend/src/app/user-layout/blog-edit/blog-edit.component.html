@@ -12,7 +12,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Title</label>
-                                        <input type="text" class="form-control" name="title" required [(ngModel)]="blogTitle" #title="ngModel">
+                                        <input type="text" class="form-control" name="title" required
+                                               [(ngModel)]="blogTitle" #title="ngModel">
                                         <div class="alert alert-danger" *ngIf="title.touched && !title.valid">
                                             <div *ngIf="title.errors.required">Title is required</div>
                                         </div>
@@ -24,12 +25,15 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Content</label>
-                                        <ckeditor [editor]="Editor" name="content" required [(ngModel)]="blogContent" #content="ngModel"></ckeditor>         
+                                        <ckeditor [editor]="Editor" name="content" required [(ngModel)]="blogContent"
+                                                  #content="ngModel"></ckeditor>
                                     </div>
                                 </div>
-                            </div>   
+                            </div>
 
-                            <button type="submit" class="btn btn-info btn-fill pull-right" [disabled]="!f.valid">Create</button>
+                            <button type="submit" class="btn btn-info btn-fill pull-right" [disabled]="!f.valid">
+                                Create
+                            </button>
                             <div class="clearfix"></div>
                         </form>
                     </div>

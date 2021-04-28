@@ -7,43 +7,48 @@
                         <h4 class="title">Email Details</h4>
                     </div>
                     <div class="content table-responsive table-full-width">
-                          <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <td>Email</td>
-                                        <td>User</td>
-                                        <td>Title</td>
-                                        <td>Content</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let emails of email | paginate: { itemsPerPage: 10, currentPage: p}">  
-                                        <td>{{emails.user.username}}</td>
-                                        <td>{{emails.user.name}}</td>
-                                        <td>{{emails.title}}</td>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <td>Email</td>
+                                <td>User</td>
+                                <td>Title</td>
+                                <td>Content</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let emails of email | paginate: { itemsPerPage: 10, currentPage: p}">
+                                <td>{{emails.user.username}}</td>
+                                <td>{{emails.user.name}}</td>
+                                <td>{{emails.title}}</td>
 
-                                        <td><button class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal" value="{{emails.body}}" (click)="selectIdHandler($event)">body</button>
-                                                  <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-                                                <div class="modal-dialog" role="document">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h5 class="modal-title" id="exampleModalLabel">Content</h5>
-                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <td>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                                            value="{{emails.body}}" (click)="selectIdHandler($event)">body
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Content</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
-                                                      </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div innerHTML="{{emailbody}}"></div>
-                                                    </div>
-                                                  </div>
+                                                    </button>
                                                 </div>
-                                              </div>     
-                                        </td>
-                                    </tr>
-                                </tbody>
-                          </table>
-                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                                <div class="modal-body">
+                                                    <div innerHTML="{{emailbody}}"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
                     </div>
                 </div>
             </div>

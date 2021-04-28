@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
+
     Optional<User> findAllByUid(long userId);
 
     @Query(value = "SELECT COUNT(username) AS UserCount FROM user", nativeQuery = true)

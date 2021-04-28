@@ -1,36 +1,41 @@
 <div class="signup-form">
     <form #f="ngForm" method="post" (submit)="userRegister()">
-		<h2>Register</h2>
-		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
+        <h2>Register</h2>
+        <p class="hint-text">Create your account. It's free and only takes a minute.</p>
         <div class="form-group">
-            <input type="text" required="required" class="form-control" name="name" placeholder="Full Name" [(ngModel)]="userName" #name="ngModel">
+            <input type="text" required="required" class="form-control" name="name" placeholder="Full Name"
+                   [(ngModel)]="userName" #name="ngModel">
             <div class="alert alert-danger" *ngIf="name.touched && !name.valid">
                 <div *ngIf="name.errors.required">Full Name is required</div>
             </div>
         </div>
         <div class="form-group">
-            <input type="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" name="email" placeholder="Email" [(ngModel)]="userEmail" #email="ngModel">
+            <input type="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                   class="form-control" name="email" placeholder="Email" [(ngModel)]="userEmail" #email="ngModel">
             <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
                 <div *ngIf="email.errors.pattern">Enter valid email</div>
                 <div *ngIf="email.errors.required">Email is required</div>
             </div>
         </div>
-		<div class="form-group">
-            <input type="password" required="required" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,8}$" class="form-control" name="password" placeholder="Password" [(ngModel)]="userPassword" #password="ngModel" >
+        <div class="form-group">
+            <input type="password" required="required"
+                   pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,8}$" class="form-control"
+                   name="password" placeholder="Password" [(ngModel)]="userPassword" #password="ngModel">
             <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
-                <div *ngIf="password.errors.pattern">Enter valid password <br> 
+                <div *ngIf="password.errors.pattern">Enter valid password <br>
                     <ul>
                         <li>Insert at least one upper and lower Case letter</li>
                         <li>Insert at least one numer and charactor</li>
                         <li>Letters need to between 6 to 8 charactors</li>
                     </ul>
-                    </div>
+                </div>
                 <div *ngIf="password.errors.required">Passoword is required</div>
-              </div>
-        </div>       
-		<div class="form-group">
+            </div>
+        </div>
+        <div class="form-group">
             <button [disabled]="!f.valid" type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
         </div>
     </form>
-	<div class="text-center">Already have an account? <a [routerLink]="['/login']" style="color:black;">Sign in</a></div>
+    <div class="text-center">Already have an account? <a [routerLink]="['/login']" style="color:black;">Sign in</a>
+    </div>
 </div>

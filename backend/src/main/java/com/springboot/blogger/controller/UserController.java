@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/user/register")
-    public ResponseEntity<Object> register(@RequestBody User user) throws ApiRequestException  {
+    public ResponseEntity<Object> register(@RequestBody User user) throws ApiRequestException {
         UserDto userDto = new UserDto();
         userService.save(user);
         userDto.setName(user.getName());
@@ -61,21 +61,21 @@ public class UserController {
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping("/user/{uid}")
-    public Optional<User> findUserById(@PathVariable long uid)  {
+    public Optional<User> findUserById(@PathVariable long uid) {
         return userService.findOneById(uid);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping("/user")
-    public List<User> findAll()  {
+    public List<User> findAll() {
         return userService.findAll();
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping(method = RequestMethod.PUT, value = "/user/{uid}")
     public MessageDto editUser(@RequestBody User user, @PathVariable long uid) {
-        User usr =  userService.findOneById(uid).get();
-        if(usr != null) {
+        User usr = userService.findOneById(uid).get();
+        if (usr != null) {
             usr.setDescription(user.getDescription());
             userService.update(usr);
         }
@@ -85,13 +85,13 @@ public class UserController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping("/email")
-    public List<Email> findAllEmails()  {
+    public List<Email> findAllEmails() {
         return userService.showEmails();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping("/user/count")
-    public String userCount()  {
+    public String userCount() {
         return userService.userClount();
     }
 }

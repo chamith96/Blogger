@@ -2,6 +2,7 @@ package com.springboot.blogger.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -14,7 +15,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, String name, String password,Set<Role> role) {
+    public User(String username, String name, String password, Set<Role> role) {
         this.username = username;
         this.name = name;
         this.password = password;
@@ -47,8 +48,8 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(name = "USER_ROLES", joinColumns = {
-            @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
-            @JoinColumn(name = "ROLE_ID") })
+            @JoinColumn(name = "USER_ID")}, inverseJoinColumns = {
+            @JoinColumn(name = "ROLE_ID")})
     private Set<Role> role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
